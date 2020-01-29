@@ -18,6 +18,14 @@ type User {
   createdEvents:[Event!]
 }
 
+type Booking {
+  _id:ID
+  event:Event!
+  user:User!
+  created:String!
+  updated:String!
+}
+
 input EventInput {
   title:String!
   description:String!
@@ -32,12 +40,14 @@ input UserInput {
 
 type rootQuery {
   events:[Event!]!
-  
+  bookings:[Booking!]!
 }
 
 type rootMutation {
   createEvent(eventInput:EventInput!):Event
   createUser(userInput:UserInput!):User
+  bookEvent(eventId:String!):Booking
+  cancelEvent(bookingId:String!):Event
 }
 
 schema {
